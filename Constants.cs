@@ -16,7 +16,7 @@
 // // // *                                                                       *
 // // // *************************************************************************
 
-namespace PT.Framework.Form
+namespace WFFM.SQLServer.SaveToDatabase
 {
   public class Constants
   {
@@ -25,14 +25,6 @@ namespace PT.Framework.Form
       internal struct Name
       {
         public const string Connection = "WFM.ConnectionString";
-      }
-    }
-
-    public struct Database
-    {
-      public struct Fields
-      {
-        public const string DataKey = "dataKey";
       }
     }
   }
