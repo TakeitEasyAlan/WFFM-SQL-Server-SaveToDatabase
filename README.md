@@ -1,13 +1,11 @@
 WFFM-SQL-Server-SaveToDatabase
 ==============================
 
-Web Form For Marketeer's (WFFM) SQL Data Provider for Sitecore 7.5
+Web Form For Marketeer's (WFFM) 2.5 - SQL Data Provider (SaveToDatabase)
 
-This project provides the ability for WFFM 2.5 to store and retrieve data from the existing WFFM SQL database.
+This project provides the ability to store and retrieve data from the existing WFFM SQL database, as with the release of WFFM 2.5 (Sitecore 7.5 version) SQL Server is no longer supported. 
 
-With the release of WFFM 2.5 (Sitecore 7.5) SQL Server for the storage of form data is no longer supported. 
-
-WFFM 2.5 only supports the use of xDB (MongoDB) to store form data that is submitted, whilst I also believe MongoDB is a much better choice for storing non-structured, there are unfrotunatly a number of websites that want to upgrade to 7.5 but they are not ready to use MongoDB.
+WFFM 2.5 only supports the use of xDB (MongoDB) to store submitted form data, whilst I also believe MongoDB is a much better choice for storing non-structured, there are unfrotunatly a number of websites that want to upgrade to 7.5 but they are not ready to use MongoDB.
 
 So the intention of this Sitecore module is to allow them to continue with their existing SQL based database (i.e. SaveToDatabase action).
 
