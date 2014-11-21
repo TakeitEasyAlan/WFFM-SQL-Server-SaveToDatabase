@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="WebFormForMarketers">
+  <DataContextMoniker Name="/WebFormForMarketersDataContext" />
+  <nestedChildShapes>
+    <classShape Id="ef3e122f-8b15-40d4-ab9f-6ca1687cfbe0" absoluteBounds="2.5, 2.625, 2, 1.9631982421875">
+      <DataClassMoniker Name="/WebFormForMarketersDataContext/Form" />
+      <nestedChildShapes>
+        <elementListCompartment Id="4a4ea134-474f-4999-be97-1e2259d48b1c" absoluteBounds="2.515, 3.085, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <classShape Id="02129760-01ba-491c-8755-f73774925b07" absoluteBounds="5.625, 2.75, 2, 1.9631982421875">
+      <DataClassMoniker Name="/WebFormForMarketersDataContext/Field" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ec754498-4355-4786-b25f-56bbd03c5461" absoluteBounds="5.64, 3.21, 1.9700000000000002, 1.4031982421875" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(4.5 : 3.66909912109375); (5.625 : 3.66909912109375)]" fixedFrom="NotFixed" fixedTo="NotFixed">
+      <AssociationMoniker Name="/WebFormForMarketersDataContext/Form/Form_Field" />
+      <nodes>
+        <classShapeMoniker Id="ef3e122f-8b15-40d4-ab9f-6ca1687cfbe0" />
+        <classShapeMoniker Id="02129760-01ba-491c-8755-f73774925b07" />
+      </nodes>
+    </associationConnector>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>

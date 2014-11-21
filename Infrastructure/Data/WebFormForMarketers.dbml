@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="BoConcept_Website_Upgrade_Webforms" Class="WebFormForMarketersDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=KORRIBAN\SQL2012;Initial Catalog=BoConcept_Website_Upgrade_Webforms;Integrated Security=True" SettingsObjectName="WFFM.SQLServer.SaveToDatabase.Properties.Settings" SettingsPropertyName="BoConcept_Website_Upgrade_WebformsConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Form" Member="Forms">
+    <Type Name="Form">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FormItemId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SessionId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="StorageName" Type="System.String" DbType="NVarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Timestamp" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Form_Field" Member="Fields" ThisKey="Id" OtherKey="FormId" Type="Field" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Field" Member="Fields">
+    <Type Name="Field">
+      <Column Name="Id" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="FieldId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="FormId" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Value" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Data" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="FieldName" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Association Name="Form_Field" Member="Form" ThisKey="FormId" OtherKey="Id" Type="Form" IsForeignKey="true" />
+    </Type>
+  </Table>
+</Database>
