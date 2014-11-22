@@ -52,16 +52,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Model
 
       foreach (AdaptedControlResult adaptedControlResult in fields)
       {
-        Infrastructure.Data.Field field = new Infrastructure.Data.Field
-        {
-          Id = Guid.NewGuid(),
-          FieldName = adaptedControlResult.FieldName,
-          Data = adaptedControlResult.Parameters ?? string.Empty,
-          Value = ((adaptedControlResult.Parameters != null) && adaptedControlResult.Parameters.StartsWith("secure:"))
-            ? Regex.Replace(adaptedControlResult.Parameters, "<schidden>.*</schidden>", "<schidden></schidden>")
-            : adaptedControlResult.Value
-        };
-
+        Infrastructure.Data.Field field = _fieldFactory.Create(adaptedControlResult);
         form.Fields.Add(field);
       }
 

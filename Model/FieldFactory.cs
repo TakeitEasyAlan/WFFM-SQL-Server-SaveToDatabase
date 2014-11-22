@@ -21,6 +21,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 *************************************************************************/
+
+using System;
+using System.Text.RegularExpressions;
+using Sitecore.Form.Core.Controls.Data;
+
 namespace WFFM.SQLServer.SaveToDatabase.Model
 {
   internal class FieldFactory
@@ -40,5 +45,23 @@ namespace WFFM.SQLServer.SaveToDatabase.Model
         FieldName = dataField.FieldName
       };
     }
+
+    public Infrastructure.Data.Field Create(AdaptedControlResult adaptedControlResult)
+    {
+      if (adaptedControlResult == null)
+        return null;
+
+      return new Infrastructure.Data.Field
+      {
+        Id = Guid.NewGuid(),
+        FieldId = new Guid(adaptedControlResult.FieldID),
+        FieldName = adaptedControlResult.FieldName,
+        Data = adaptedControlResult.Parameters ?? string.Empty,
+        Value = ((adaptedControlResult.Parameters != null) && adaptedControlResult.Parameters.StartsWith("secure:"))
+          ? Regex.Replace(adaptedControlResult.Parameters, "<schidden>.*</schidden>", "<schidden></schidden>")
+          : adaptedControlResult.Value
+      };
+    }
+
   }
 }
