@@ -16,7 +16,7 @@ This is currently simple version that allows you to do the following
 
 In the future I intend to provide the ability to down load the data for a given form, as an Excel spreadsheet from within the Sitecore client.
 
-for more details see http://blog.coates.dk/2014/11/22/sql-provider-for-web-forms-for-marketers-wffm-2-5-sitecore-7-5
+Documetation: http://blog.coates.dk/2014/11/22/sql-provider-for-web-forms-for-marketers-wffm-2-5-sitecore-7-5
 
 
 
