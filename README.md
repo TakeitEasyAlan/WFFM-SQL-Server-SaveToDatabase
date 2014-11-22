@@ -1,7 +1,7 @@
 WFFM-SQL-Server-SaveToDatabase
 ==============================
 
-Web Forms for Marketers (WFFM) 2.5 - SQL Data Provider (SaveToDatabase)
+Sitecore 7.5 - Web Forms for Marketers (WFFM) 2.5 - SQL Data Provider (SaveToDatabase)
 
 This project provides the ability to store and retrieve data from the existing WFFM SQL database, as with the release of WFFM 2.5 (Sitecore 7.5 version) SQL Server is no longer supported. 
 
