@@ -24,7 +24,6 @@ SOFTWARE.
 
 using System.Collections.Generic;
 using System.Linq;
-using Sitecore.Configuration;
 using Sitecore.Data;
 using Sitecore.Diagnostics;
 using Sitecore.Form.Core.Client.Data.Submit;
@@ -41,7 +40,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Model
       Assert.ArgumentNotNull(fields, "fields");
 
       Infrastructure.Data.Form form = _formFactory.Create(formId, fields, sessionID, data);
-      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(Constants.ConnectionString))
       {
         webFormForMarketersDataContext.Forms.InsertOnSubmit(form);
         webFormForMarketersDataContext.SubmitChanges();
@@ -54,7 +53,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Model
  
       List<IForm> forms = new List<IForm>();
 
-      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(Constants.ConnectionString))
       {
         IQueryable<Infrastructure.Data.Form> dataForms = webFormForMarketersDataContext.Forms.Where(f => f.FormItemId == formId.Guid).OrderBy(f => f.Timestamp);
         foreach (Infrastructure.Data.Form dataForm in dataForms)
@@ -67,10 +66,6 @@ namespace WFFM.SQLServer.SaveToDatabase.Model
       return forms;
     }
 
-    private string ConnectionString
-    {
-      get { return Settings.GetConnectionString(Settings.GetSetting(Constants.Settings.Name.Connection)); }
-    }
-    private readonly FormFactory _formFactory = new FormFactory();
+     private readonly FormFactory _formFactory = new FormFactory();
   }
 }

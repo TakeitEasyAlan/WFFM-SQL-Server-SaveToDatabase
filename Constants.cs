@@ -27,5 +27,14 @@ namespace WFFM.SQLServer.SaveToDatabase
         public const string Connection = "WFM.ConnectionString";
       }
     }
+
+    static internal string ConnectionString
+    {
+      get
+      {
+        return Sitecore.Configuration.Settings.GetConnectionString(Sitecore.Configuration.Settings.GetSetting(Settings.Name.Connection));
+      }
+    }
+
   }
 }
