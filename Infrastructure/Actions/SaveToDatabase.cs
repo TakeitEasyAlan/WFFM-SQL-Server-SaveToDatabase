@@ -73,6 +73,6 @@ namespace WFFM.SQLServer.SaveToDatabase.Infrastructure.Actions
       Execute(formid, fields, null);
     }
 
-    private readonly FormReposiotry _formReposiotry = new FormReposiotry();
+    private readonly FormRepository _formRepository = new FormRepository();
   }
 }

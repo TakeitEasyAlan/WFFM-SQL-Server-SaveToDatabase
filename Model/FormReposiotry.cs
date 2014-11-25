@@ -32,7 +32,7 @@ using WFFM.SQLServer.SaveToDatabase.Infrastructure.Data;
 
 namespace WFFM.SQLServer.SaveToDatabase.Model
 {
-  public class FormReposiotry
+    public class FormRepository
   {
     public void Insert(ID formId, AdaptedResultList fields, ID sessionID, string data)
     {
