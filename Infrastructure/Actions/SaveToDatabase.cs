@@ -32,47 +32,46 @@ using WFFM.SQLServer.SaveToDatabase.Model;
 
 namespace WFFM.SQLServer.SaveToDatabase.Infrastructure.Actions
 {
-  public class SaveToDatabase : ISaveAction, ISubmit
-  {
-    // note: code taken from pre xDb 
-    public virtual void Execute(ID formId, AdaptedResultList fields, object[] data)
+    public class SaveToDatabase : ISaveAction, ISubmit
     {
-      Assert.ArgumentNotNull(formId, "formid");
-      Assert.ArgumentNotNull(data, "data");
-      try
-      {
-        ID sessionId = ID.Null;
-        if ((data != null) && (data.Length > 0))
+        public virtual void Execute(ID formId, AdaptedResultList fields, object[] data)
         {
-          ID.TryParse(data[0], out sessionId);
+            Assert.ArgumentNotNull(formId, "formid");
+            Assert.ArgumentNotNull(data, "data");
+            try
+            {
+                ID sessionId = ID.Null;
+                if ((data != null) && (data.Length > 0))
+                {
+                    ID.TryParse(data[0], out sessionId);
+                }
+
+                _formReposiotry.Insert(formId, fields, sessionId,
+                  ((data != null) && (data.Length > 1)) ? data[0].ToString() : null);
+            }
+            catch (EntityCommandExecutionException entityCommandExecutionException)
+            {
+                Exception innerException = entityCommandExecutionException;
+                if (entityCommandExecutionException.InnerException != null)
+                {
+                    innerException = entityCommandExecutionException.InnerException;
+                }
+                Log.Error("Save To Database failed.", innerException, innerException);
+                throw innerException;
+            }
+            catch (Exception exception)
+            {
+                Log.Error("Save To Database failed.", exception, exception);
+                throw;
+            }
         }
 
-        _formReposiotry.Insert(formId, fields, sessionId,
-          ((data != null) && (data.Length > 1)) ? data[0].ToString() : null);
-      }
-      catch (EntityCommandExecutionException entityCommandExecutionException)
-      {
-        Exception innerException = entityCommandExecutionException;
-        if (entityCommandExecutionException.InnerException != null)
+        [Obsolete("Use Execute instead.")]
+        public void Submit(ID formid, AdaptedResultList fields)
         {
-          innerException = entityCommandExecutionException.InnerException;
+            Execute(formid, fields, null);
         }
-        Log.Error("Save To Database failed.", innerException, innerException);
-        throw innerException;
-      }
-      catch (Exception exception)
-      {
-        Log.Error("Save To Database failed.", exception, exception);
-        throw;
-      }
-    }
 
-    [Obsolete("Use Execute instead.")]
-    public void Submit(ID formid, AdaptedResultList fields)
-    {
-      Execute(formid, fields, null);
+        private readonly FormRepository _formReposiotry = new FormRepository();
     }
-
-    private readonly FormRepository _formRepository = new FormRepository();
-  }
 }

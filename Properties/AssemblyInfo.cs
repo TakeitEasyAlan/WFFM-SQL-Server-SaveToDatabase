@@ -25,4 +25,4 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyProduct("WFFM.SQLServer.SaveToDatabase")]
 [assembly: ComVisible(false)]
 [assembly: Guid("7de1fb50-609d-4936-a597-3c799bde1b53")]
-[assembly: AssemblyVersion("1.0.*")]
+[assembly: AssemblyVersion("1.1.*")]

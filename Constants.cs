@@ -18,23 +18,64 @@
 
 namespace WFFM.SQLServer.SaveToDatabase
 {
-  public class Constants
-  {
-    internal struct Settings
+    internal class Constants
     {
-      internal struct Name
-      {
-        public const string Connection = "WFM.ConnectionString";
-      }
+        internal struct Settings
+        {
+            internal struct Name
+            {
+                internal const string Connection = "WFM.ConnectionString";
+            }
+        }
+
+        internal struct Url
+        {
+            internal const string ExportFromDataPage = "/Components/Framework/Form/Presentation/ExportFormData.aspx";
+        }
+
+        internal struct QueryString
+        {
+            internal struct Name
+            {
+                internal const string ItemId = "itemId";
+                internal const string ItemName = "itemName";
+            }
+        }
+
+        internal struct Delimiter
+        {
+            internal const char Column = ';';
+
+        }
+
+        internal struct Response
+        {
+            internal struct ContentType
+            {
+                internal const string Csv = "text/csv; charset=UTF-8";
+            }
+            internal struct Charset
+            {
+                internal const string Utf8 = "UTF-8";
+            }
+
+            internal struct Header
+            {
+                internal struct ContentDisposition
+                {
+                    internal const string Name = "Content-Disposition";
+                    internal const string AttachmentFilenameFormat = "attachment; filename={0}";
+                }
+            }
+        }
+
+        internal struct File
+        {
+            internal struct Exstensions
+            {
+                internal const string Csv = "csv";
+            }
+        }
     }
 
-    static internal string ConnectionString
-    {
-      get
-      {
-        return Sitecore.Configuration.Settings.GetConnectionString(Sitecore.Configuration.Settings.GetSetting(Settings.Name.Connection));
-      }
-    }
-
-  }
 }

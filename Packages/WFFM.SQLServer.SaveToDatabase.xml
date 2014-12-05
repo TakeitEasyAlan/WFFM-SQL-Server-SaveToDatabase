@@ -3,13 +3,13 @@
     <metadata>
       <PackageName>WFFM.SQLServer.SaveToDatabase</PackageName>
       <Author>Alan Coates</Author>
-      <Version>1.0</Version>
+      <Version>1.1</Version>
       <Revision />
       <License />
       <Comment />
       <Attributes />
       <Readme />
-      <Publisher />
+      <Publisher>Alan Coates</Publisher>
       <PostStep />
       <PackageID />
     </metadata>
@@ -19,11 +19,21 @@
     <xitems>
       <Entries>
         <x-item>/master/sitecore/system/Modules/Web Forms for Marketers/Settings/Actions/Save Actions/Save to Database/{F03608CC-559B-451E-BC5B-6A7ADFF32C94}/invariant/0</x-item>
+        <x-item>/core/sitecore/content/Applications/Content Editor/Ribbons/Contextual Ribbons/Forms/Form/Forms/Export Data as CSV/{63AF435B-5C80-4FFF-9B3A-F9FAE3CCB496}/invariant/0</x-item>
       </Entries>
       <SkipVersions>False</SkipVersions>
       <Converter>
         <ItemToEntryConverter>
-          <Transforms />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
         </ItemToEntryConverter>
       </Converter>
       <Include />
