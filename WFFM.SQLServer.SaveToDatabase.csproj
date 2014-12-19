@@ -51,21 +51,35 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Application\CsvEncodeService.cs" />
-    <Compile Include="Application\ExportToCsvService.cs" />
-    <Compile Include="Application\GenerateCsvResponseService.cs" />
-    <Compile Include="Application\GenerateFileNameService.cs" />
+    <Compile Include="Application\CsvEncodeService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\ExportToCsvService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\GenerateCsvResponseService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Application\GenerateFileNameService.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Constants.cs" />
     <Compile Include="Infrastructure\Actions\SaveToDatabase.cs" />
-    <Compile Include="Infrastructure\Commands\ExportFormDataCommand.cs" />
+    <Compile Include="Infrastructure\Commands\ExportFormDataCommand.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Infrastructure\Data\WebFormForMarketers.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>WebFormForMarketers.dbml</DependentUpon>
     </Compile>
-    <Compile Include="Model\CsvColumnRepository.cs" />
+    <Compile Include="Model\CsvColumnRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Model\FieldFactory.cs" />
-    <Compile Include="Model\FieldRepository.cs" />
+    <Compile Include="Model\FieldRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Model\FormFactory.cs" />
     <Compile Include="Model\FormReposiotry.cs" />
     <Compile Include="Model\Field.cs" />
@@ -111,6 +125,7 @@
       <DependentUpon>WebFormForMarketers.dbml</DependentUpon>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>
