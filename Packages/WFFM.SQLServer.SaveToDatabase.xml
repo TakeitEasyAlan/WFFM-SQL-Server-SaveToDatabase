@@ -3,7 +3,7 @@
     <metadata>
       <PackageName>WFFM.SQLServer.SaveToDatabase</PackageName>
       <Author>Alan Coates</Author>
-      <Version>1.1</Version>
+      <Version>1.2</Version>
       <Revision />
       <License />
       <Comment />
@@ -43,11 +43,22 @@
     <xfiles>
       <Entries>
         <x-item>/bin/WFFM.SQLServer.SaveToDatabase.dll</x-item>
+        <x-item>/App_Config/Include/WFFM.SQLServer.SaveToDatabase.config</x-item>
+        <x-item>/Components/Framework/Form/Presentation/ExportFormData.aspx</x-item>
       </Entries>
       <Converter>
         <FileToEntryConverter>
           <Root>/</Root>
-          <Transforms />
+          <Transforms>
+            <InstallerConfigurationTransform>
+              <Options>
+                <BehaviourOptions>
+                  <ItemMode>Undefined</ItemMode>
+                  <ItemMergeMode>Undefined</ItemMergeMode>
+                </BehaviourOptions>
+              </Options>
+            </InstallerConfigurationTransform>
+          </Transforms>
         </FileToEntryConverter>
       </Converter>
       <Include />
