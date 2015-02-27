@@ -76,6 +76,11 @@ namespace WFFM.SQLServer.SaveToDatabase
                 internal const string Csv = "csv";
             }
         }
+
+        internal struct DateTime
+        {
+            internal const string TimeStampFormat = "yyyy-MM-dd HH:mm:ss";
+        }
     }
 
 }

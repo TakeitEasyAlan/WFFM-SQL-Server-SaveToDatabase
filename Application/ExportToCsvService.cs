@@ -55,8 +55,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
             GenerateCsvResponseService.GenerateCsvResponse(response, formName, csvString.ToString());
         }
 
-
-
+  
         private void AddRows(StringBuilder csvString, IEnumerable<IForm> forms, Dictionary<Guid, string> columns)
         {
             Assert.ArgumentNotNull(csvString, "csvString");
@@ -66,6 +65,9 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
             foreach (IForm form in forms)
             {
                 StringBuilder row = new StringBuilder();
+                //add timestamp
+                row.Append(form.Timestamp.ToString(Constants.DateTime.TimeStampFormat));
+
                 foreach (KeyValuePair<Guid, string> column in columns)
                 {
                     string value = string.Empty;
@@ -87,6 +89,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
             Assert.ArgumentNotNull(columns, "columns");
 
             StringBuilder header = new StringBuilder();
+            header.Append("Timestamp");
             foreach (KeyValuePair<Guid, string> column in columns)
             {
                 if (header.Length > 0)
