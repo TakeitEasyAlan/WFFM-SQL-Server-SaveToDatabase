@@ -39,13 +39,8 @@ namespace WFFM.SQLServer.SaveToDatabase
             {
                 internal const string ItemId = "itemId";
                 internal const string ItemName = "itemName";
+                internal const string DateRange = "dateRange";
             }
-        }
-
-        internal struct Delimiter
-        {
-            internal const char Column = ';';
-
         }
 
         internal struct Response

@@ -29,7 +29,18 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
         internal static string CsvEncode(string input)
         {
             input = input ?? string.Empty;
-            return input.Replace(Constants.Delimiter.Column, ' ');
+            return input.Replace(CsvDelimiter, " ");
+        }
+
+        static string _delimiter = null;
+        internal static string CsvDelimiter
+        {
+            get
+            {
+                if (_delimiter == null)
+                    _delimiter = Sitecore.Configuration.Settings.GetSetting("WFFM.SQLServer.SaveToDatabase.CsvDelimiter", ";");
+                return _delimiter;
+            }
         }
     }
 }

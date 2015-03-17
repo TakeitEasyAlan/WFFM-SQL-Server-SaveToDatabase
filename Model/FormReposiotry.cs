@@ -30,49 +30,83 @@ using Sitecore.Diagnostics;
 using Sitecore.Form.Core.Client.Data.Submit;
 using Sitecore.Forms.Data;
 using WFFM.SQLServer.SaveToDatabase.Infrastructure.Data;
+using System;
 
 namespace WFFM.SQLServer.SaveToDatabase.Model
 {
     public class FormRepository
-  {
-    public void Insert(ID formId, AdaptedResultList fields, ID sessionID, string data)
     {
-      Assert.ArgumentNotNull(formId, "formId");
-      Assert.ArgumentNotNull(fields, "fields");
-
-      Infrastructure.Data.Form form = _formFactory.Create(formId, fields, sessionID, data);
-      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
-      {
-        webFormForMarketersDataContext.Forms.InsertOnSubmit(form);
-        webFormForMarketersDataContext.SubmitChanges();
-      }
-
-    }
-
-
-    public IEnumerable<IForm> Get(ID formId)
-    {
- 
-      List<IForm> forms = new List<IForm>();
-
-      using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
-      {
-        IQueryable<Infrastructure.Data.Form> dataForms = webFormForMarketersDataContext.Forms.Where(f => f.FormItemId == formId.Guid).OrderBy(f => f.Timestamp);
-        foreach (Infrastructure.Data.Form dataForm in dataForms)
+        public void Insert(ID formId, AdaptedResultList fields, ID sessionID, string data)
         {
-          Model.Form form = _formFactory.Create(dataForm);
-          if (form != null)
-            forms.Add(form);
+            Assert.ArgumentNotNull(formId, "formId");
+            Assert.ArgumentNotNull(fields, "fields");
+
+            Infrastructure.Data.Form form = _formFactory.Create(formId, fields, sessionID, data);
+            using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+            {
+                webFormForMarketersDataContext.Forms.InsertOnSubmit(form);
+                webFormForMarketersDataContext.SubmitChanges();
+            }
+
         }
-      }
-      return forms;
-    }
 
-    private string ConnectionString
-    {
-      get { return Settings.GetConnectionString(Settings.GetSetting(Constants.Settings.Name.Connection)); }
-    }
 
-    private readonly FormFactory _formFactory = new FormFactory();
-  }
+        public IEnumerable<IForm> Get(ID formId)
+        {
+
+            List<IForm> forms = new List<IForm>();
+
+            using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+            {
+                IQueryable<Infrastructure.Data.Form> dataForms = webFormForMarketersDataContext.Forms.Where(f => f.FormItemId == formId.Guid).OrderBy(f => f.Timestamp);
+                foreach (Infrastructure.Data.Form dataForm in dataForms)
+                {
+                    Model.Form form = _formFactory.Create(dataForm);
+                    if (form != null)
+                        forms.Add(form);
+                }
+            }
+            return forms;
+        }
+
+        public IEnumerable<IForm> Get(ID formId, DateTime from, DateTime to)
+        {
+
+            List<IForm> forms = new List<IForm>();
+
+            using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+            {
+                var dataForms = webFormForMarketersDataContext.Forms
+                                                    .Where(f => f.FormItemId == formId.Guid)
+                                                    .Where(f => f.Timestamp >= from && f.Timestamp <= to)
+                                                    .OrderBy(f => f.Timestamp);
+                foreach (Infrastructure.Data.Form dataForm in dataForms)
+                {
+                    Model.Form form = _formFactory.Create(dataForm);
+                    if (form != null)
+                        forms.Add(form);
+                }
+            }
+            return forms;
+        }
+
+        public DateTime OldestFormSubmission(ID formId)
+        {
+            var dt = DateTime.Now;
+            using (WebFormForMarketersDataContext webFormForMarketersDataContext = new WebFormForMarketersDataContext(ConnectionString))
+            {
+                var forms = webFormForMarketersDataContext.Forms.Where(f => f.FormItemId == formId.Guid);
+                if (forms.Count() > 0)
+                    dt = forms.Min(f => f.Timestamp);
+            }
+            return dt;
+        }
+
+        private string ConnectionString
+        {
+            get { return Settings.GetConnectionString(Settings.GetSetting(Constants.Settings.Name.Connection)); }
+        }
+
+        private readonly FormFactory _formFactory = new FormFactory();
+    }
 }
