@@ -35,18 +35,31 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
 {
     public class ExportToCsvService
     {
+        internal void ExportToCsv(HttpResponse response, ID formId, string formName, DateTime from, DateTime to)
+        {
+            Assert.ArgumentNotNull(response, "response");
+            Assert.ArgumentNotNull(formId, "formId");
+
+            IEnumerable<IForm> forms = _formRepository.Get(formId, from, to).ToList();
+            ExportToCsv(response, formId, formName, forms);
+        }
+
         internal void ExportToCsv(HttpResponse response, ID formId, string formName)
         {
             Assert.ArgumentNotNull(response, "response");
-            Assert.ArgumentNotNull(response, "formId");
+            Assert.ArgumentNotNull(formId, "formId");
 
             IEnumerable<IForm> forms = _formRepository.Get(formId).ToList();
+            ExportToCsv(response, formId, formName, forms);
+        }
+
+        internal void ExportToCsv(HttpResponse response, ID formId, string formName, IEnumerable<IForm> forms)
+        {
             if (!forms.Any())
             {
                 response.Write(string.Format("No data for form with id:{0}", formId));
                 return;
             }
-
 
             StringBuilder csvString = new StringBuilder();
             Dictionary<Guid, string> columns = _csvColumnRepository.Get(forms);
@@ -55,7 +68,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
             GenerateCsvResponseService.GenerateCsvResponse(response, formName, csvString.ToString());
         }
 
-  
+
         private void AddRows(StringBuilder csvString, IEnumerable<IForm> forms, Dictionary<Guid, string> columns)
         {
             Assert.ArgumentNotNull(csvString, "csvString");
@@ -75,7 +88,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
                     if (field != null)
                         value = CsvEncodeService.CsvEncode(field.Value);
                     if (row.Length > 0)
-                        row.Append(Constants.Delimiter.Column);
+                        row.Append(CsvEncodeService.CsvDelimiter);
                     row.Append(value);
                 }
                 csvString.AppendLine(row.ToString());
@@ -93,7 +106,7 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
             foreach (KeyValuePair<Guid, string> column in columns)
             {
                 if (header.Length > 0)
-                    header.Append(Constants.Delimiter.Column);
+                    header.Append(CsvEncodeService.CsvDelimiter);
                 header.Append(column.Value);
             }
             csvString.AppendLine(header.ToString());
