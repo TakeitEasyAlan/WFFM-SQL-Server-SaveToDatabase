@@ -35,11 +35,10 @@ namespace WFFM.SQLServer.SaveToDatabase.Application
         static string _delimiter = null;
         internal static string CsvDelimiter
         {
-            get
-            {
-                if (_delimiter == null)
-                    _delimiter = Sitecore.Configuration.Settings.GetSetting("WFFM.SQLServer.SaveToDatabase.CsvDelimiter", ";");
-                return _delimiter;
+            get {
+                return _delimiter ??
+                       (_delimiter =
+                           Sitecore.Configuration.Settings.GetSetting(Constants.Settings.Name.CsvDelimiter, ";"));
             }
         }
     }

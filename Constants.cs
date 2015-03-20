@@ -25,6 +25,8 @@ namespace WFFM.SQLServer.SaveToDatabase
             internal struct Name
             {
                 internal const string Connection = "WFM.ConnectionString";
+                internal const string CsvDelimiter = "WFFM.SQLServer.SaveToDatabase.CsvDelimiter";
+                internal const string ExportOptions = "WFFM.SQLServer.SaveToDatabase.ExportOptions";
             }
         }
 
@@ -75,6 +77,7 @@ namespace WFFM.SQLServer.SaveToDatabase
         internal struct DateTime
         {
             internal const string TimeStampFormat = "yyyy-MM-dd HH:mm:ss";
+            internal const string DateFormat = "d";
         }
     }
 

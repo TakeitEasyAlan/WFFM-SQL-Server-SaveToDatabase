@@ -21,17 +21,15 @@ namespace WFFM.SQLServer.SaveToDatabase.Presentation
             }
 
             // If export options enabled show the date range UI options, otherwise just export all data immediately
-            var exportOptions = Sitecore.Configuration.Settings.GetBoolSetting("WFFM.SQLServer.SaveToDatabase.ExportOptions", false);
+            var exportOptions = Sitecore.Configuration.Settings.GetBoolSetting(Constants.Settings.Name.ExportOptions, false);
             if (exportOptions)
             {
                 WithDateRange.Visible = true;
 
-                if (!IsPostBack)
-                {
-                    txtFrom.Text = _formRepository.OldestFormSubmission(new ID(this.ItemID)).ToString("d");
-                    txtTo.Text = DateTime.Now.ToString("d");
-                }
-                return;
+                if (IsPostBack) 
+                    return;
+                txtFrom.Text = _formRepository.OldestFormSubmission(new ID(this.ItemID)).ToString(Constants.DateTime.DateFormat);
+                txtTo.Text = DateTime.Now.ToString(Constants.DateTime.DateFormat);
             }
             else
             {
