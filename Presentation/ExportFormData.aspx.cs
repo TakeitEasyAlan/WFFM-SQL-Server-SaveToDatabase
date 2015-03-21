@@ -43,14 +43,14 @@ namespace WFFM.SQLServer.SaveToDatabase.Presentation
             DateTime from;
             if (!DateTime.TryParse(txtFrom.Text, out from))
             {
-                warnFrom.Text = "Incorrect DateTime format.";
+                warnFrom.Text = Constants.Texts.Warning.IncorrectDateFromat;
                 return;
             }
 
             DateTime to;
             if (!DateTime.TryParse(txtTo.Text, out to))
             {
-                warnTo.Text = "Incorrect DateTime format.";
+                warnTo.Text = Constants.Texts.Warning.IncorrectDateFromat; ;
                 return;
             }
 

@@ -20,6 +20,15 @@ namespace WFFM.SQLServer.SaveToDatabase
 {
     internal class Constants
     {
+        internal struct Texts
+        {
+            internal struct Warning
+            {
+                internal const string IncorrectDateFromat = "Incorrect DateTime format.";
+                
+            }
+        }
+
         internal struct Settings
         {
             internal struct Name

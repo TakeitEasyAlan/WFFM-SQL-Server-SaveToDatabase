@@ -105,7 +105,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App_data\include\WFFM.SQLServer.SaveToDatabase.config" />
+    <None Include="App_config\Include\WFFM.SQLServer.SaveToDatabase.config" />
     <None Include="Infrastructure\Data\WebFormForMarketers.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
       <LastGenOutput>WebFormForMarketers.designer.cs</LastGenOutput>
@@ -114,6 +114,8 @@
     <None Include="Packages\WFFM.SQLServer.SaveToDatabase-1.0.zip" />
     <None Include="Packages\WFFM.SQLServer.SaveToDatabase-1.1.zip" />
     <None Include="Packages\WFFM.SQLServer.SaveToDatabase-1.2.zip" />
+    <None Include="Packages\WFFM.SQLServer.SaveToDatabase-1.3.zip" />
+    <None Include="Packages\WFFM.SQLServer.SaveToDatabase-1.4.zip" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
