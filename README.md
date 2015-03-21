@@ -17,6 +17,10 @@ This is currently simple version that allows you to do the following
 
 3)  Provide the ability to download the data for a given form as an Excel spreadsheet from within the Sitecore client.
 
+4)  Provide the ability to specify a date range to export
+
+5)  Define which the Csv Delimiter 
+
 Documetation: http://blog.coates.dk/2014/11/24/sql-provider-for-web-forms-for-marketers-wffm-2-5-sitecore-7-5/
 
 
